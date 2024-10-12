@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% block title %}About{% endblock %}
+
+{% block content %}
+<h1>Account</h1></h1>
+
+<h1>Hi This Is the Accounts area!!!!!</h1>
+<br> You are able to paste your resume here below in order to use your own resume for the cover letter generator!
+<br>
+<br>
+<h2 align="center">paste your resume here!</h2>
+<ul class="list-group list-group-flush" id="resumes">
+    {% for resume in user.resumes %}
+    <pre><li class="list-group-item">
+        {{ resume.data }} 
+        <button type="button" class="close" onClick="deleteResume( '{{ resume.id }}' )">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li></pre>
+    
+    {% endfor %}
+</ul>
+        <form method="POST">
+            {% if isbutton %}
+            <textarea name = "resume" id="resumes" class="form-control"></textarea>
+            <div align="center">
+                <button type="submit" class="btn btn-primary">Add Resume</button>
+            </div>
+            {% endif %}
+        </form>
+        <p>uploaded file: {{ filename }}</p>
+        {% if isuploaded %}
+        <div class="center">
+            
+            <form method="POST" action="/remove-template">
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04" onClick="">Remove File</button>
+                  </div>
+            </form>
+        {% endif %}
+        <br>
+       
+        Add Coverletter Template Here!
+        <div class="center">
+            <form method="POST" action="/template" enctype="multipart/form-data">
+                <div class="input-group">
+                    <input type="file" class="form-control" name='file' id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
+                  </div>
+            </form>
+
+                
+        </div>
+
+
+
+{% endblock %}
+
