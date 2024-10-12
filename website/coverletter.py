@@ -1,7 +1,6 @@
 import docx
 from docx import Document
 import os
-cool = os.path.join(os.environ["USERPROFILE"], "Desktop")
 
 
 
